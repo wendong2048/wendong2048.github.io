@@ -4,8 +4,10 @@ var hasConflicted =new Array();
 
 var startx=0;
 var starty=0;
+var startTime = 0;
 var endx=0;
 var endy=0;
+var endTime = 0;
 var best;
 $(document).ready(function () {
 
@@ -228,6 +230,8 @@ $(document).keydown(function(event){
 document.addEventListener('touchstart',function(event){
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
+    let now = new Date();
+    startTime = now.getTime();
 });
 
 
@@ -235,13 +239,17 @@ document.addEventListener('touchstart',function(event){
 document.addEventListener('touchend',function(event){
     endx=event.changedTouches[0].pageX;
     endy=event.changedTouches[0].pageY;
-
+    let now = new Date();
+    endTime = now.getTime();
+    var deltaTime = endTime-startTime;
     var deltax=endx-startx;
     var deltay=endy-starty;
+    // console.log(deltay / (deltaTime * documentWidth) )
 
-    if(Math.abs(deltax)<0.2*documentWidth&&Math.abs(deltay)<0.2*documentWidth){
+    if(Math.abs(deltax)<0.1*documentWidth&&Math.abs(deltay)<0.1*documentWidth){
         return ;
     }
+
     if(Math.abs(deltax)>Math.abs(deltay)){
         if(deltax>0){
             if(moveRight()){
