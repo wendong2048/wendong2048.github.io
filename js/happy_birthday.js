@@ -91,7 +91,6 @@ Letter.prototype.reset = function(){
 	this.prevPoints = [ [ 0, hh, 0 ] ];
 }
 Letter.prototype.step = function(){
-	
 	if( this.phase === 'firework' ){
 		
 		if( !this.spawned ){
@@ -224,14 +223,12 @@ Letter.prototype.step = function(){
 		if( this.tick > opts.letterContemplatingWaitTime ){
 			
 			this.phase = 'balloon';
-			
 			this.tick = 0;
 			this.spawning = true;
 			this.spawnTime = opts.balloonSpawnTime * Math.random() |0;
 			this.inflating = false;
 			this.inflateTime = opts.balloonBaseInflateTime + opts.balloonAddedInflateTime * Math.random() |0;
 			this.size = opts.balloonBaseSize + opts.balloonAddedSize * Math.random() |0;
-			
 			var rad = opts.balloonBaseRadian + opts.balloonAddedRadian * Math.random(),
 					vel = opts.balloonBaseVel + opts.balloonAddedVel * Math.random();
 			
@@ -266,6 +263,7 @@ Letter.prototype.step = function(){
 			generateBalloonPath( x, y, this.size * proportion );
 			ctx.fill();
 			
+			ctx.lineWidth = 5;
 			ctx.beginPath();
 			ctx.moveTo( x, y );
 			ctx.lineTo( x, this.y );
@@ -288,7 +286,8 @@ Letter.prototype.step = function(){
 			ctx.beginPath();
 			generateBalloonPath( this.cx, this.cy, this.size );
 			ctx.fill();
-			
+
+			ctx.lineWidth = 5;
 			ctx.beginPath();
 			ctx.moveTo( this.cx, this.cy );
 			ctx.lineTo( this.cx, this.cy + this.size );
