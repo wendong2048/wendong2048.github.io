@@ -300,17 +300,17 @@ document.addEventListener('touchend',(event)=> {
 
     if(Math.abs(deltax)>Math.abs(deltay)){
         if(deltax>0){
+          easterEggDetector('right');
             if(moveRight()){
-
                 setTimeout(() => {
                     if(generateOneNumber()) {
-
                     }
                 },210);
                 setTimeout("isgameover()",300);
             }
 
         }else{
+          easterEggDetector('left');
             if(moveLeft()){
                 setTimeout(() => {
                     if(generateOneNumber()) {
@@ -323,6 +323,7 @@ document.addEventListener('touchend',(event)=> {
         }
     }else{
         if(deltay>0){
+             easterEggDetector('down')
             if(moveDown()){
                 setTimeout(() => {
                     if(generateOneNumber()) {
@@ -333,7 +334,7 @@ document.addEventListener('touchend',(event)=> {
             }
 
         }else{
-
+           easterEggDetector('up')
             if(moveUp()){
                 setTimeout(() => {
                     if(generateOneNumber()) {
