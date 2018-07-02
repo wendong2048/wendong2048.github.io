@@ -20,7 +20,6 @@ function loading() {
     }, delay + 1950);
 
     setTimeout(function(){
-    console.log('hi')
       $body.css('background-color','#FFF')
       $('#c').css('display', 'none')
     }, delay + 2150);

@@ -9,10 +9,20 @@ var endx=0;
 var endy=0;
 var endTime = 0;
 var best;
+var easterEgg = ['up','up','down','down','left','left','right','right','restart'];
+var instructSequence = [];
 $(document).ready(function () {
 
+    mode = localStorage.getItem('mode')?localStorage.getItem('mode'):'wendong';
     prepareForMobile();
 
+    if(mode == 'wendong') {
+        happyBrithdayAnim();
+    } else{
+      $('body').css('background-color','#FFF')
+      $('#c').css('display', 'none')
+    }
+    
     best = localStorage.getItem("best-score") ? parseInt(localStorage.getItem("best-score")) : 0
     $("#best").text(best);
 
@@ -20,6 +30,10 @@ $(document).ready(function () {
     generateOneNumber();
     generateOneNumber();
 });
+
+
+
+
 function prepareForMobile(){
     if(navigator.userAgent.match(/(ipad|iPhone|iPod|Android|ios|ONEPLUS)/i)){
         document.querySelector('html').style.fontSize = document.body.clientWidth / 375* 10 + 'px';
@@ -52,6 +66,30 @@ function prepareForMobile(){
     $('.grid-cell').css('height',cellSideLength);
     $('.grid-cell').css('border-radius',0.02*cellSideLength);
 }
+
+
+function easterEggDetector (instrct) {
+    instructSequence.push(instrct)
+    for (let i = 0; i < instructSequence.length; i++) {
+        if (instructSequence[i] != easterEgg[i]) {
+           instructSequence = []
+        
+        }
+    }
+    if ((easterEgg.length - 1) == instructSequence.length
+         && easterEgg[instructSequence.length] == 'restart'){
+        $('#restart-cell').css('background-color','#ff0b00cc')
+    } else {
+        $('#restart-cell').css('background-color','#1982efcc')
+    }
+
+    if (easterEgg.length == instructSequence.length) {
+        mode = mode == 'wendong' ? 'tong' : 'wendong'
+        localStorage.setItem('mode',mode)
+    }
+} 
+
+
 
 function init(){
 
@@ -147,10 +185,14 @@ function updateBoardView(){
     $('.number-cell').css('font-size',0.6*cellSideLength+'px');
 }
 
+
+
 function generateOneNumber(){
-        if(nospace(board)){
+    if(nospace(board)){
         return false;
-        }
+    }
+
+    //audioPlay();
 
     var randx=parseInt(Math.floor(Math.random()*4));
     var randy=parseInt(Math.floor(Math.random()*4));
@@ -179,44 +221,49 @@ function generateOneNumber(){
 }
 
 
+$(document).keydown((event) => {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-$(document).keydown(function(event){
     switch (event.keyCode){
+
         case 37:  //left
+            easterEggDetector('left');
             if(moveLeft()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                    }
+                },210);
+
+
                 setTimeout("isgameover()",300);
             }
             break;
         case 38:  //up
+            easterEggDetector('up');
             if(moveUp()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
             break;
         case 39:  //right
-
+            easterEggDetector('right');
             if(moveRight()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
             break;
         case 40:   //down
+            easterEggDetector('down');
             if(moveDown()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
             break;
@@ -228,6 +275,7 @@ $(document).keydown(function(event){
 });
 
 document.addEventListener('touchstart',function(event){
+
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
     let now = new Date();
@@ -235,8 +283,8 @@ document.addEventListener('touchstart',function(event){
 });
 
 
+document.addEventListener('touchend',(event)=> {
 
-document.addEventListener('touchend',function(event){
     endx=event.changedTouches[0].pageX;
     endy=event.changedTouches[0].pageY;
     let now = new Date();
@@ -244,7 +292,7 @@ document.addEventListener('touchend',function(event){
     var deltaTime = endTime-startTime;
     var deltax=endx-startx;
     var deltay=endy-starty;
-    // console.log(deltay / (deltaTime * documentWidth) )
+
 
     if(Math.abs(deltax)<0.1*documentWidth&&Math.abs(deltay)<0.1*documentWidth){
         return ;
@@ -253,13 +301,22 @@ document.addEventListener('touchend',function(event){
     if(Math.abs(deltax)>Math.abs(deltay)){
         if(deltax>0){
             if(moveRight()){
-                setTimeout("generateOneNumber()",210);
+
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
 
         }else{
             if(moveLeft()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                        //audioPlay();
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
 
@@ -267,14 +324,22 @@ document.addEventListener('touchend',function(event){
     }else{
         if(deltay>0){
             if(moveDown()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                       // audioPlay();
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
 
         }else{
 
             if(moveUp()){
-                setTimeout("generateOneNumber()",210);
+                setTimeout(() => {
+                    if(generateOneNumber()) {
+                       // audioPlay();
+                    }
+                },210);
                 setTimeout("isgameover()",300);
             }
 

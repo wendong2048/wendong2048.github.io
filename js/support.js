@@ -35,7 +35,7 @@ function getNumberBackgroundColor(number){
 
 function getNumberDisplayImage(number){
 
-    return number <= 2048 ? 'url(img/' + number + '.png)' : false;
+    return number <= 2048 ? 'url(img/' + (mode == 'tong' ? 'tong/': '') + number + '.png)' : false;
 }
 
 

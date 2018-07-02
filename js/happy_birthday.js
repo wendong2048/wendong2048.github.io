@@ -399,7 +399,6 @@ for( var i = 0; i < opts.strings.length; ++i ){
 	}
 }
 
-happyBrithdayAnim();
 
 // 
 
