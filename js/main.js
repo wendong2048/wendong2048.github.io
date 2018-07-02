@@ -15,7 +15,7 @@ $(document).ready(function () {
 
     mode = localStorage.getItem('mode')?localStorage.getItem('mode'):'wendong';
     prepareForMobile();
-
+    uglyPreloading();
     if(mode == 'wendong') {
         happyBrithdayAnim();
     } else{
@@ -86,6 +86,7 @@ function easterEggDetector (instrct) {
     if (easterEgg.length == instructSequence.length) {
         mode = mode == 'wendong' ? 'tong' : 'wendong'
         localStorage.setItem('mode',mode)
+        uglyPreloading();
     }
 } 
 
@@ -115,6 +116,18 @@ function init(){
     $("#score").text(score);
 }
 
+
+function uglyPreloading () {
+  let innerHTML = '';
+
+  for (i = 1; i <= 11; i++) {
+    let number = Math.pow(2, i)
+    innerHTML += `<div style="background-image: url('img/${(mode == 'tong' ? 'tong/': '')}${number}.png')"></div>`
+  }
+
+  $('.uglyPreloading').html(innerHTML)
+
+}
 
 function showNumber(i,j,randNumber){
     var numberCell=$("#number-cell-"+ i +"-" + j);
