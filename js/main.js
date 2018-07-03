@@ -78,6 +78,7 @@ function easterEggDetector (instrct) {
     }
     if ((easterEgg.length - 1) == instructSequence.length
          && easterEgg[instructSequence.length] == 'restart'){
+        alert('changecolor ' + instructSequence.length + ' ' + easterEgg[instructSequence.length])
         $('#restart-cell').css('background-color','#ff0b00cc')
     } else {
         $('#restart-cell').css('background-color','#1982efcc')
@@ -288,16 +289,14 @@ $(document).keydown((event) => {
 
 document.addEventListener('touchstart',function(event){
 
-    if (event.cancelable) {
+
+    if (event.cancelable && navigator.userAgent.match(/(Android)/i)) {
         if (!event.defaultPrevented) {
             event.preventDefault();
         }
     }
 
-
-    let string = '';
     for (let i in event.path) {
-        string += event.path[i].id + ' ';
         if(event.path[i].id == 'restart-cell') {
             easterEggDetector('restart');
             init();
@@ -305,8 +304,6 @@ document.addEventListener('touchstart',function(event){
             generateOneNumber()
         }
     }
-
-    $('#debug').html(string)
 
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
@@ -316,7 +313,7 @@ document.addEventListener('touchstart',function(event){
 
 document.addEventListener('touchend',function(event){
 
-    if (event.cancelable) {
+    if (event.cancelable && navigator.userAgent.match(/(Android)/i)) {
         if (!event.defaultPrevented) {
             event.preventDefault();
         }
