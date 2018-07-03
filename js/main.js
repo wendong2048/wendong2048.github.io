@@ -83,6 +83,8 @@ function easterEggDetector (instrct) {
         $('#restart-cell').css('background-color','#1982efcc')
     }
 
+    alert(instructSequence.toString())
+
     if (easterEgg.length == instructSequence.length) {
         mode = mode == 'wendong' ? 'tong' : 'wendong'
         localStorage.setItem('mode',mode)
@@ -288,21 +290,37 @@ $(document).keydown((event) => {
 });
 
 document.addEventListener('touchstart',function(event){
-     event.preventDefault();
+
+    if (event.cancelable) {
+        if (!event.defaultPrevented) {
+            event.preventDefault();
+        }
+    }
+    for (let i in event.path) {
+        if(event.path[i].id == 'restart-cell') {
+            easterEggDetector('restart');
+            init();
+            generateOneNumber();
+            generateOneNumber()
+        }
+    }
+    console.log(event.path[0].id)
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
-    let now = new Date();
-    startTime = now.getTime();
 });
 
 
-document.addEventListener('touchend',(event)=> {
+
+document.addEventListener('touchend',function(event){
+
+    if (event.cancelable) {
+        if (!event.defaultPrevented) {
+            event.preventDefault();
+        }
+    }
 
     endx=event.changedTouches[0].pageX;
     endy=event.changedTouches[0].pageY;
-    let now = new Date();
-    endTime = now.getTime();
-    var deltaTime = endTime-startTime;
     var deltax=endx-startx;
     var deltay=endy-starty;
 
