@@ -204,7 +204,6 @@ function generateOneNumber(){
     if(nospace(board)){
         return false;
     }
-
     //audioPlay();
 
     var randx=parseInt(Math.floor(Math.random()*4));
@@ -294,7 +293,11 @@ document.addEventListener('touchstart',function(event){
             event.preventDefault();
         }
     }
+
+
+    let string = '';
     for (let i in event.path) {
+        string += event.path[i].id + ' ';
         if(event.path[i].id == 'restart-cell') {
             easterEggDetector('restart');
             init();
@@ -302,6 +305,9 @@ document.addEventListener('touchstart',function(event){
             generateOneNumber()
         }
     }
+
+    $('#debug').html(string)
+
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
 });
