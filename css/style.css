@@ -35,7 +35,7 @@ canvas {
 
 .button-cell
 {
-	color: rgba(255,255,255,0.8);
+	color: rgba(255,255,255);
 	font-size: 3rem;
 	font-weight: bold;
 	font-family: sans-serif;
@@ -48,7 +48,7 @@ canvas {
 	width: 8rem;
 	height: 7rem;
 	padding: 1rem;
-	background-color: rgba(25,130,239,0.8);
+	background-color: rgba(25,130,239);
 	position: absolute;
 	margin-left: 3rem;
 	margin-top: 5rem;
@@ -61,7 +61,7 @@ canvas {
 	height: 7rem;
 	padding: 1rem;
 	margin: 0.2rem auto;
-	background-color: rgba(25,130,239,0.8);
+	background-color: rgba(25,130,239);
 	position: absolute;
 	margin-left: 14rem;
 	margin-top: 5rem;
@@ -75,12 +75,12 @@ canvas {
 	height: 7rem;
 	padding: 1rem;
 	margin: 0.2rem auto;
-	background-color: rgba(25,130,239,0.8);
+	background-color: rgba(25,130,239);
 	position: absolute;
 	margin-left: 25rem;
 	margin-top: 5rem;
 	border-radius: 1rem;
-/*	 -webkit-transition: background-color 1s;*/
+	 -webkit-transition: background-color 1s;
 }
 
 

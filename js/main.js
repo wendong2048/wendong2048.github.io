@@ -78,7 +78,6 @@ function easterEggDetector (instrct) {
     }
     if ((easterEgg.length - 1) == instructSequence.length
          && easterEgg[instructSequence.length] == 'restart'){
-        alert('changecolor ' + instructSequence.length + ' ' + easterEgg[instructSequence.length])
         $('#restart-cell').css('background-color','#ff0b00')
     } else {
         $('#restart-cell').css('background-color','#1982ef')
