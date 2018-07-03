@@ -80,7 +80,7 @@ canvas {
 	margin-left: 25rem;
 	margin-top: 5rem;
 	border-radius: 1rem;
-	transition: background-color 1s
+	 -webkit-transition: background-color 1s;
 }
 
 

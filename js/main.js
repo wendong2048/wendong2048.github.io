@@ -83,8 +83,6 @@ function easterEggDetector (instrct) {
         $('#restart-cell').css('background-color','#1982efcc')
     }
 
-    alert(instructSequence.toString())
-
     if (easterEgg.length == instructSequence.length) {
         mode = mode == 'wendong' ? 'tong' : 'wendong'
         localStorage.setItem('mode',mode)
@@ -304,7 +302,6 @@ document.addEventListener('touchstart',function(event){
             generateOneNumber()
         }
     }
-    console.log(event.path[0].id)
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
 });
