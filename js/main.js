@@ -288,7 +288,7 @@ $(document).keydown((event) => {
 });
 
 document.addEventListener('touchstart',function(event){
-
+     event.preventDefault();
     startx=event.touches[0].pageX;
     starty=event.touches[0].pageY;
     let now = new Date();
