@@ -81,7 +81,7 @@ function easterEggDetector (instrct) {
         alert('changecolor ' + instructSequence.length + ' ' + easterEgg[instructSequence.length])
         $('#restart-cell').css('background-color','#ff0b00cc')
     } else {
-        $('#restart-cell').css('background-color','#1982efcc')
+        // $('#restart-cell').css('background-color','#1982efcc')
     }
 
     if (easterEgg.length == instructSequence.length) {
